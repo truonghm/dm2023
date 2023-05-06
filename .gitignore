@@ -2,7 +2,7 @@
 data/*
 
 # Jupter Notebook Experimentations
-notebooks/*.ipynb
+# notebooks/*.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
