@@ -20,7 +20,7 @@ cd labwork
 Displaying help for arguments:
 
 ```bash
-./01.preprocessing.py --help
+python 01.preprocessing.py --help
 ```
 
 ### Labwork 1
