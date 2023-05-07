@@ -12,9 +12,9 @@ def read_data(limit: Optional[int] = None) -> np.ndarray:
     lengths = []
     with open(REVIEW_PATH) as f:
         for idx, line in enumerate(f):
-            lengths.append(len(json.loads(line)["text"]))
             if limit and idx >= limit:
                 break
+            lengths.append(len(json.loads(line)["text"]))
 
     lengths = np.array(lengths)
     return lengths
