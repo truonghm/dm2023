@@ -28,3 +28,9 @@ python 01.preprocessing.py --help
 ```bash
 python 01.preprocessing.py -st=0.02 -ft=30 -n=1000
 ```
+
+### Labwork 2
+
+```bash
+python 02.review.length.py
+```
