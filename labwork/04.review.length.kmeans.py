@@ -26,12 +26,12 @@ class KMeansClustering:
             return 0
         return sum(cluster) / len(cluster)
 
-    def fit(self, data: list, max_iterations:int = 100):
+    def fit(self, data: list, threshold: float = 0.001):
         centroids = random.sample(data, self.k)
         clusters = {i: [] for i in range(self.k)}
         labels = []
 
-        for _ in range(max_iterations):
+        while True:
             labels = []
             for value in data:
                 closest_centroid_idx = 0
@@ -45,9 +45,9 @@ class KMeansClustering:
                 clusters[closest_centroid_idx].append(value)
 
             new_centroids = [self.compute_mean(cluster) for cluster in clusters.values()]
-            sse = sum((value - centroids[label]) ** 2 for value, label in zip(data, labels))
-            print(f"SSE: {sse}")
-            if new_centroids == centroids:
+            
+            max_shift = max(abs(new - old) for new, old in zip(new_centroids, centroids))
+            if max_shift < threshold:
                 break
 
             centroids = new_centroids
