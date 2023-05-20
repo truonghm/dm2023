@@ -20,9 +20,9 @@ class FlatKernel(Kernel):
     def get_weight(self, point1: Point, point2: Point) -> float:
         return 1 if point1.distance(point2) <= self.h else 0
 
-class GaussiantKernel(Kernel):
-    def __init__(self):
-        pass
+class GaussianKernel(Kernel):
+    def __init__(self, sigma: float):
+        self.sigma = sigma
 
     def get_weight(self, point1: Point, point2: Point) -> float:
-        return math.exp(-point1.distance(point2) ** 2 / 2)
+        return math.exp(-point1.distance(point2) ** 2 / (2 * self.sigma ** 2))
