@@ -40,12 +40,12 @@ class MeanShiftClustering:
     def fit_predict(self, data: DataVector, verbose: bool = False):
         mode = [[] for _ in range(len(data))]
 
-        if not verbose:
-            iterator = range(len(data))
-        else:
-            iterator = tqdm(range(len(data)), total=len(data), desc=self.__class__.__name__)
-        for i in iterator:
-        # for i in range(len(data)):
+        # if not verbose:
+        #     iterator = range(len(data))
+        # else:
+        #     iterator = tqdm(range(len(data)), total=len(data), desc=self.__class__.__name__)
+        # for i in iterator:
+        for i in range(len(data)):
             m = 0
             mode[i].append(data[i])
             while True:
