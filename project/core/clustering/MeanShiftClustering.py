@@ -60,19 +60,9 @@ class MeanShiftClustering:
             if mode[i][0] not in centroids:
                 centroids.append(mode[i][0])
 
-        # labels = []
-        # for i in range(len(data)):
-        #     labels.append(centroids.index(mode[i][0]))
-
-        self.centroids = centroids
-        # self.labels = labels
-
-    def predict(self, data: DataVector):
         labels = []
         for i in range(len(data)):
-            nearest_centroid = self.centroids[0]
-            for centroid in self.centroids:
-                if data[i].distance(centroid) < data[i].distance(nearest_centroid):
-                    nearest_centroid = centroid
-            labels.append(self.centroids.index(nearest_centroid))
-        return labels
+            labels.append(centroids.index(mode[i][0]))
+
+        self.centroids = centroids
+        self.labels = labels
