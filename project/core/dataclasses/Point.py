@@ -27,29 +27,23 @@ class Point(ABC):
             return True
         return False
 
-class Point1D(Point):
-    def __init__(self, x: float) -> None:
-        super().__init__((x,))
+# class Point1D(Point):
+#     def __init__(self, x: float) -> None:
+#         super().__init__((x,))
 
-    def distance(self, other: Point1D) -> float:
-        return abs(self.coordinates[0] - other.coordinates[0])
-
-    # def __repr__(self):
-    #     return f"Point1D({self.coordinates})"
+#     def distance(self, other: Point1D) -> float:
+#         return abs(self.coordinates[0] - other.coordinates[0])
 
 
-class Point2D(Point):
-    def __init__(self, x: float, y: float) -> None:
-        super().__init__((x, y))
+# class Point2D(Point):
+#     def __init__(self, x: float, y: float) -> None:
+#         super().__init__((x, y))
 
-    def distance(self, other: Point2D) -> float:
-        return (
-            (self.coordinates[0] - other.coordinates[0]) ** 2
-            + (self.coordinates[1] - other.coordinates[1]) ** 2
-        ) ** 0.5
-
-    # def __repr__(self) -> str:
-    #     return f"Point2D({self.coordinates})"
+#     def distance(self, other: Point2D) -> float:
+#         return (
+#             (self.coordinates[0] - other.coordinates[0]) ** 2
+#             + (self.coordinates[1] - other.coordinates[1]) ** 2
+#         ) ** 0.5
 
 
 class Point3D(Point):
@@ -62,6 +56,3 @@ class Point3D(Point):
             + (self.coordinates[1] - other.coordinates[1]) ** 2
             + (self.coordinates[2] - other.coordinates[2]) ** 2
         ) ** 0.5
-
-    # def __repr__(self) -> str:
-    #     return f"Point3D({self.coordinates})"
