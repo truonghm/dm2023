@@ -72,25 +72,21 @@ if __name__ == "__main__":
     if not os.path.exists(args.input):
         raise FileNotFoundError(f"File {args.input} not found")
 
-    if args.verbose:
-        print("Loading image...")
+    print("Loading image...")
     image = load_image(args.input)
     image_array = prepare_image(image)
-    if args.verbose:
-        print("Image loaded successfully. Dimension of image are: ", image.shape)
 
-    if args.verbose:
-        print("Fitting data...")
+    print("Image loaded successfully. Dimension of image are: ", image.shape)
+
+    print("Fitting data...")
     mean_shift.fit_predict(image_array, verbose=args.verbose)
     
-    if args.verbose:
-        print("Fitting done. Number of clusters found: ", len(mean_shift.centroids))
+    print("Fitting done. Number of clusters found: ", len(mean_shift.centroids))
 
     labels = mean_shift.labels
     plt.imshow(np.array(labels).reshape(image.shape[0], image.shape[1]))
 
-    if args.verbose:
-        print("Saving output image to", args.output)
+    print("Saving output image to", args.output)
 
     if args.output:
         plt.savefig(args.output)
