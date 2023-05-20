@@ -2,7 +2,7 @@ import imageio
 from pathlib import Path
 import numpy as np
 
-from core.dataobject import Point3D, DataVector
+from core.dataclasses import Point3D, DataVector
 
 def load_image(path: str):
     image_path = Path(path)

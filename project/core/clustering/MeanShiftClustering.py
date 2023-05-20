@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import List, Union
+from typing import List, Tuple, Union
 
 from tqdm import tqdm
 
-from core.dataobject.DataVector import DataVector, Point
+from core.dataclasses.DataVector import DataVector, Point
 from core.kernel.Kernel import Kernel
 
 
@@ -19,24 +19,25 @@ class MeanShiftClustering:
 
     @staticmethod
     def shift_mode(point: Point, data: Union[DataVector, List[Point]], kernel: Kernel):
-        # TODO: fix this method to work with other objects
         total_weights = 0
-        weighted_sum = [0, 0, 0]
+        weighted_sum: List[int] = [0 for _ in range(len(point))]
         for i in range(len(data)):
             weight = kernel.get_weight(point, data[i])
             total_weights += weight
-            weighted_sum[0] += weight * data[i][0]
-            weighted_sum[1] += weight * data[i][1]
-            weighted_sum[2] += weight * data[i][2]
+            for j in range(len(point)):
+                weighted_sum[j] += weight * data[i][j]
+            # weighted_sum[0] += weight * data[i][0]
+            # weighted_sum[1] += weight * data[i][1]
+            # weighted_sum[2] += weight * data[i][2]
 
         if total_weights != 0:
             point_cls = type(point)
-            coordinates = tuple([coordinate / total_weights for coordinate in weighted_sum])
-            return point_cls(*coordinates) 
+            coordinates: Tuple[float,...] = tuple([coordinate / total_weights for coordinate in weighted_sum])
+            return point_cls(*coordinates)  # type: ignore
         else:
             return point
 
-    def fit(self, data: DataVector, verbose: bool = False):
+    def fit_predict(self, data: DataVector, verbose: bool = False):
         mode = [[] for _ in range(len(data))]
 
         if not verbose:

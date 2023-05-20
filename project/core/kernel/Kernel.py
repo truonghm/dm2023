@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 import math
-from core.dataobject.DataVector import Point
+from core.dataclasses.DataVector import Point
 
 
 class Kernel(ABC):

@@ -1,3 +1,6 @@
+# experiments code
+project/*_test.py
+
 # data
 data/*
 

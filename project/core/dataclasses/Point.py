@@ -1,11 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Tuple
 
 
 class Point(ABC):
     @abstractmethod
-    def __init__(self, coordinates: tuple) -> None:
+    def __init__(self, coordinates: Tuple[float,...]) -> None:
         self.coordinates = coordinates
 
     @abstractmethod
