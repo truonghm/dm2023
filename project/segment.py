@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     if args.verbose:
         print("Fitting data...")
-    mean_shift.fit(image_array, verbose=args.verbose)
+    mean_shift.fit_predict(image_array, verbose=args.verbose)
     
     if args.verbose:
         print("Fitting done. Number of clusters found: ", len(mean_shift.centroids))
