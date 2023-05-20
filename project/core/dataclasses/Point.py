@@ -23,7 +23,7 @@ class Point(ABC):
         return len(self.coordinates)
     
     def __eq__(self, other):
-        if self.coordinates == other.coordinates:
+        if isinstance(other, Point) and self.coordinates == other.coordinates:
             return True
         return False
 
