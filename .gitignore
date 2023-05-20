@@ -1,6 +1,9 @@
 # data
 data/*
 
+# pyright config
+pyrightconfig.json
+
 # Jupter Notebook Experimentations
 notebooks/*.ipynb
 
