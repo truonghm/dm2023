@@ -1,1 +1,1 @@
-from .Kernel import FlatKernel, GaussiantKernel
+from .Kernel import FlatKernel, GaussianKernel

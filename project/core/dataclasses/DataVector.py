@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from typing import List
 from .Point import Point
 
+
 class DataVector:
     def __init__(self, points: List[Point]):
         self.points = points

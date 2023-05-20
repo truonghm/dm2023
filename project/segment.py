@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 
 import numpy as np
 from core.clustering import MeanShiftClustering
-from core.kernel import FlatKernel, GaussiantKernel
+from core.kernel import FlatKernel, GaussianKernel
 from core.utils import load_image, prepare_image
 import os
 
@@ -23,13 +23,14 @@ if __name__ == "__main__":
         type=bool,
         default=True,
         help="Enable verbose mode",
+        action=argparse.BooleanOptionalAction
     )
 
     parser.add_argument(
         "-o",
         "--output",
         type=str,
-        default="output.jpg",
+        # default="output.jpg",
         help="Path for output highlighted image",
     )
 
@@ -48,13 +49,21 @@ if __name__ == "__main__":
         help="Bandwidth for the flat kernel function",
     )
 
+    parser.add_argument(
+        "-s",
+        "--sigma",
+        type=float,
+        default=1.0,
+        help="Sigma for the gaussian kernel function",
+    )
+
     args = parser.parse_args()
 
     if args.kernel == "flat":
         kernel = FlatKernel(h=args.bandwidth)
 
     elif args.kernel == "gaussian":
-        kernel = GaussiantKernel()
+        kernel = GaussianKernel(sigma=args.sigma)
 
     else:
         raise ValueError("Invalid kernel function")
@@ -77,10 +86,11 @@ if __name__ == "__main__":
     if args.verbose:
         print("Fitting done. Number of clusters found: ", len(mean_shift.centroids))
 
-    labels = mean_shift.predict(image_array)
+    labels = mean_shift.labels
     plt.imshow(np.array(labels).reshape(image.shape[0], image.shape[1]))
 
     if args.verbose:
         print("Saving output image to", args.output)
 
-    plt.savefig(args.output)
+    if args.output:
+        plt.savefig(args.output)
