@@ -5,9 +5,13 @@ install:
 	@echo ">> Installing dependencies"
 	pip install -r requirements-project.txt
 
-## Install for development 
-install-dev: install
-	pip install -r requirements-project-dev.txt
+docker-build:
+	@echo ">> Building docker image"
+	docker build -t dm2023 .
+
+docker-run:
+	@echo ">> Running docker image"
+	docker run -it -v ./project/result:/project/result dm2023 bash
 
 ## Delete all temporary files
 clean:

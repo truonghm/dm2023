@@ -12,18 +12,22 @@
 2. Install the required packages: 
 
 ```bash
+# use make
+make install
+
+# or explicitly use pip
 pip install -r requirements-project.txt
 ```
 
 It's also possible to run the project using Docker to avoid installing the packages locally. To do so, run:
 
 ```bash
-# build the image
-docker build -t dm2023 .
+# use make
+make docker-build
 
 # run the container and start bash
 # the result folder will be used as a volume, so the result image can be accessed from the host machine
-docker run -it -v ./project/result:/project/result dm2023 bash
+make docker-run
 ```
 
 ## Run the project
