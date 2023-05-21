@@ -46,15 +46,15 @@ if __name__ == "__main__":
         "--bandwidth",
         type=float,
         default=0.5,
-        help="Bandwidth for the flat kernel function",
+        help="Bandwidth for the kernel function",
     )
 
     parser.add_argument(
-        "-s",
-        "--sigma",
+        "-t",
+        "--threshold",
         type=float,
-        default=1.0,
-        help="Sigma for the gaussian kernel function",
+        default=0.01,
+        help="Threshold for stopping the clustering",
     )
 
     args = parser.parse_args()
@@ -63,12 +63,12 @@ if __name__ == "__main__":
         kernel = FlatKernel(h=args.bandwidth)
 
     elif args.kernel == "gaussian":
-        kernel = GaussianKernel(sigma=args.sigma)
+        kernel = GaussianKernel(sigma=args.bandwidth)
 
     else:
         raise ValueError("Invalid kernel function")
 
-    mean_shift = MeanShiftClustering(kernel=kernel, threshold=0.001)
+    mean_shift = MeanShiftClustering(kernel=kernel, threshold=args.threshold)
     if not os.path.exists(args.input):
         raise FileNotFoundError(f"File {args.input} not found")
 
@@ -89,4 +89,5 @@ if __name__ == "__main__":
     print("Saving output image to", args.output)
 
     if args.output:
+        plt.title(f"{args.kernel} kernel with bandwidth={args.bandwidth}")
         plt.savefig(args.output)
