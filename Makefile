@@ -1,4 +1,3 @@
-pipc = ${HOME}/miniconda3/envs/pip-base/bin/python -m piptools compile
 .PHONY: install clean lint format 
 
 ## Install for production
@@ -9,12 +8,6 @@ install:
 ## Install for development 
 install-dev: install
 	pip install -r requirements-project-dev.txt
-
-req-dev:
-	$(pipc) --generate-hashes --output-file=requirements-project-dev.txt --extra=project --extra=dev pyproject.toml --resolver=backtracking
-
-req:
-	$(pipc) --generate-hashes --output-file=requirements-project.txt --extra=project pyproject.toml --resolver=backtracking
 
 ## Delete all temporary files
 clean:
@@ -28,28 +21,6 @@ clean:
 	rm -rf **/__pycache__
 	rm -rf build
 	rm -rf dist
-
-## Lint using ruff
-ruff:
-	ruff .
-
-## Format files using black
-format:
-	black .
-	ruff . --fix
-
-## Run tests
-test:
-	pytest  --cov=project --cov-report=html --log-level=WARNING --disable-pytest-warnings
-
-## Run checks (ruff + test)
-check:
-	ruff check .
-	black --check .
-
-## Get docker-compose log
-log:
-	docker-compose logs -f
 
 
 #################################################################################

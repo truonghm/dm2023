@@ -20,7 +20,6 @@ def prepare_image(image):
     return DataVector(data)
 
 def recreate_image(centroids, labels, w, h):
-    """Recreate the (compressed) image from the code book & labels"""
     d = centroids.shape[1]
     image = np.zeros((w, h, d))
     label_idx = 0
