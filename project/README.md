@@ -28,7 +28,7 @@ docker run -it -v ./project/result:/project/result dm2023 bash
 
 ## Run the project
 
-The image used for the project is [china_resized.jpg](./data/china_resized.jpg). The image is resized to 64x43 pixels to reduce the computation time. The original image is [china.jpg](./data/china.jpg). Credit for the image go to [Professor Emmanuel Viennet](https://viennet.net/pub/USTH/03-Wednesday/notebooks/china.jpg).
+The image used for the project is [china_resized.jpg](./data/china_resized.jpg). The image is resized to 64x43 pixels to reduce the computation time. The original image is [china.jpg](./data/china.jpg). Credit for the image goes to [Professor Emmanuel Viennet](https://viennet.net/pub/USTH/03-Wednesday/notebooks/china.jpg).
 
 First, change directory into the project folder:
 
@@ -128,7 +128,7 @@ chmod +x experiment.sh
 
 The experiments for different parameters are all run with default threshold = 0.01. The result is as below:
 
-| Kernel   | Parameter | Clusters | Time |
+| Kernel   | Parameter | No. of Clusters | Time(s) |
 | -------- | --------- | -------- | ---- |
 | flat     | 0.2       | 105      | 133  |
 | flat     | 0.5       | 20       | 88   |
