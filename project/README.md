@@ -81,11 +81,11 @@ python segment.py -i data/china_resized.jpg --verbose -k gaussian -bd 1 -o outpu
 
 The project is structured as below. The core entities in the project are:
 
-- data classes:
+- **data classes**:
   - DataVector: a vector of data points
   - Point: a data point, can be 1, 2 or 3 dimensional
-- kernel classes: GaussianKernel/FlatKernel
-- clustering algorithm: MeanShiftClustering
+- **kernel classes**: GaussianKernel/FlatKernel
+- **clustering algorithm**: MeanShiftClustering
 
 ```
 dm2023
