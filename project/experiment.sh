@@ -17,7 +17,7 @@ printf "%-10s %-10s %-10s %-10s\n" "Kernel" "Parameter" "Clusters" "Time"
 for bandwidth in ${bandwidths[@]}
 do
   start_time=$(date +%s)
-  output_file="output_flat_${bandwidth}.png"
+  output_file="result/output_flat_${bandwidth}.png"
   result=$(python segment.py --no-verbose -i $input_image -o $output_file -k "flat" -bd $bandwidth | grep "Fitting done. Number of clusters found" | cut -d':' -f2)
   end_time=$(date +%s)
   run_time=$((end_time - start_time))
@@ -31,7 +31,7 @@ done
 for sigma in ${sigmas[@]}
 do
   start_time=$(date +%s)
-  output_file="output_gaussian_${sigma}.png"
+  output_file="result/output_gaussian_${sigma}.png"
   result=$(python segment.py --no-verbose -i $input_image -o $output_file -k "gaussian" -bd $sigma | grep "Fitting done. Number of clusters found" | cut -d':' -f2)
   end_time=$(date +%s)
   run_time=$((end_time - start_time))
