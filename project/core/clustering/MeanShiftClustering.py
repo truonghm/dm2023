@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import List, Tuple, Union
+from typing import Any, List, Tuple, Union
 
 from tqdm import tqdm
 
@@ -56,13 +56,19 @@ class MeanShiftClustering:
             mode[i][0] = mode[i][m]
 
         centroids = []
-        for i in range(len(data)):
-            if mode[i][0] not in centroids:
-                centroids.append(mode[i][0])
-
         labels = []
         for i in range(len(data)):
-            labels.append(centroids.index(mode[i][0]))
+            nearest_centroid = mode[0][0]
+            for j in range(len(data)):
+                if data[i].distance(mode[j][0]) < data[i].distance(nearest_centroid):
+                    nearest_centroid = mode[j][0]
+            if nearest_centroid not in centroids:
+                centroids.append(nearest_centroid)
+            labels.append(centroids.index(nearest_centroid))
+
+        # labels = []
+        # for i in range(len(data)):
+        #     labels.append(centroids.index(mode[i][0]))
 
         self.centroids = centroids
         self.labels = labels
