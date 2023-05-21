@@ -24,13 +24,11 @@ docker build -t dm2023 .
 # run the container and start bash
 # the result folder will be used as a volume, so the result image can be accessed from the host machine
 docker run -it -v ./project/result:/project/result dm2023 bash
-
-
-# run the project in the new bash shell
-python segment.py -i data/china_resized.jpg --verbose -k gaussian -bd 1 -o output_gaussian.jpg
 ```
 
 ## Run the project
+
+The image used for the project is [china_resized.jpg](./data/china_resized.jpg). The image is resized to 64x43 pixels to reduce the computation time. The original image is [china.jpg](./data/china.jpg). Credit for the image go to [Professor Emmanuel Viennet](https://viennet.net/pub/USTH/03-Wednesday/notebooks/china.jpg).
 
 First, change directory into the project folder:
 
@@ -66,7 +64,17 @@ For example, to run the algorithm with:
 - Output image: [output.jpg](/project/data/output.jpg)
 
 ```bash
-python segment.py --input data/china_resized.jpg --output output_flat.jpg --kernel flat --bandwidth 0.5
+python segment.py --input data/china_resized.jpg --output output.jpg --kernel flat --bandwidth 0.5
+```
+
+It's also possible to run in Docker, assuming that the steps in the previous section have been done:
+
+```bash
+# run the project in the new bash shell
+python segment.py -i data/china_resized.jpg --verbose -k gaussian -bd 1 -o output_gaussian.jpg
+
+# or run the experiments
+./experiment.sh data/china_resized.jpg
 ```
 
 ## Project structure
