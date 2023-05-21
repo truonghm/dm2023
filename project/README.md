@@ -15,6 +15,21 @@
 pip install -r requirements.txt
 ```
 
+It's also possible to run the project using Docker to avoid installing the packages locally. To do so, run:
+
+```bash
+# build the image
+docker build -t dm2023 .
+
+# run the container and start bash
+# the result folder will be used as a volume, so the result image can be accessed from the host machine
+docker run -it -v ./project/result:/project/result dm2023 bash
+
+
+# run the project in the new bash shell
+python segment.py -i data/china_resized.jpg --verbose -k gaussian -bd 1 -o output_gaussian.jpg
+```
+
 ## Run the project
 
 First, change directory into the project folder:
@@ -117,10 +132,10 @@ The experiments for different parameters are all run with default threshold = 0.
 
 | Gaussian Kernel | Flat Kernel |
 |:---------------:|:-----------:|
-| <img width="1604" alt="gaussian kernel, bandwidth=0.1" src="./output_gaussian_0.1.png"> | <img width="1604" alt="flat kernel, bandwidth=0.2" src="./output_flat_0.2.png"> |
-| <img width="1604" alt="gaussian kernel, bandwidth=0.5" src="./output_gaussian_0.5.png"> | <img width="1604" alt="flat kernel, bandwidth=0.5" src="./output_flat_0.5.png"> |
-| <img width="1604" alt="gaussian kernel, bandwidth=1.0" src="./output_gaussian_1.0.png"> | <img width="1604" alt="flat kernel, bandwidth=0.7" src="./output_flat_0.7.png"> |
-| <img width="1604" alt="gaussian kernel, bandwidth=1.5" src="./output_gaussian_1.5.png"> | <img width="1604" alt="flat kernel, bandwidth=1.0" src="./output_flat_1.0.png"> |
+| <img width="1604" alt="gaussian kernel, bandwidth=0.1" src="./result/output_gaussian_0.1.png"> | <img width="1604" alt="flat kernel, bandwidth=0.2" src="./result/output_flat_0.2.png"> |
+| <img width="1604" alt="gaussian kernel, bandwidth=0.5" src="./result/output_gaussian_0.5.png"> | <img width="1604" alt="flat kernel, bandwidth=0.5" src="./result/output_flat_0.5.png"> |
+| <img width="1604" alt="gaussian kernel, bandwidth=1.0" src="./result/output_gaussian_1.0.png"> | <img width="1604" alt="flat kernel, bandwidth=0.7" src="./result/output_flat_0.7.png"> |
+| <img width="1604" alt="gaussian kernel, bandwidth=1.5" src="./result/output_gaussian_1.5.png"> | <img width="1604" alt="flat kernel, bandwidth=1.0" src="./result/output_flat_1.0.png"> |
 
 - For flat kernel, as shown above, a smaller bandwidth can lead to overfitting and a higher number of clusters as the algorithm might fit to the noise in the data.
 
