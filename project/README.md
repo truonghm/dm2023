@@ -46,7 +46,9 @@ To see the detailed description of the arguments, run:
 
 ```bash
 > python segment.py --help
+```
 
+```
 options:
   -h, --help                    show this help message and exit
   -i, --input                   Path for the input image, e.g: ./data/example.png
