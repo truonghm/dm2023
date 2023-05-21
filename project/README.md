@@ -12,7 +12,7 @@
 2. Install the required packages: 
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-project.txt
 ```
 
 It's also possible to run the project using Docker to avoid installing the packages locally. To do so, run:
